@@ -13,9 +13,9 @@ db_input high opentelemetry-shell-interactive/OTLP_LOGS_ENDPOINT || true
 db_endblock
 
 db_beginblock
-db_input high opentelemetry-shell-interactive/OTLP_TRACES_HEADER || true
-db_input high opentelemetry-shell-interactive/OTLP_METRICS_HEADER || true
-db_input high opentelemetry-shell-interactive/OTLP_LOGS_HEADER || true
+db_input high opentelemetry-shell-interactive/OTLP_TRACES_HEADERS || true
+db_input high opentelemetry-shell-interactive/OTLP_METRICS_HEADERS || true
+db_input high opentelemetry-shell-interactive/OTLP_LOGS_HEADERS || true
 db_endblock
 
 db_go
