@@ -1,0 +1,41 @@
+Template: opentelemetry-shell-interactive/OTEL_RESOURCE_ATTRIBUTES
+Type: string
+Default:
+Description: Resource Attributes:
+ Define the Resource Attributes as key-value pairs, separated by comma.
+
+Template: opentelemetry-shell-interactive/OTLP_TRACES_ENDPOINT
+Type: string
+Default: 
+Description: OTLP Traces Endpoint:
+ Define the OTLP Endpoint to send traces to, empty if no observability data should be collected.
+
+Template: opentelemetry-shell-interactive/OTLP_METRICS_ENDPOINT
+Type: string
+Default:
+Description: OTLP Endpoint:
+ Define the OTLP Metrics Endpoint to send metrics to, empty if no observability data should be collected.
+
+Template: opentelemetry-shell-interactive/OTLP_LOGS_ENDPOINT
+Type: string
+Default:
+Description: OTLP Endpoint:
+ Define the OTLP Logs Endpoint to send metrics to, empty if no observability data should be collected.
+
+Template: opentelemetry-shell-interactive/OTLP_TRACES_HEADER
+Type: string
+Default:
+Description: OTLP Traces Authorization Header:
+ Define the API Token for the OTLP Traces Endpoint, empty if none is required.
+
+Template: opentelemetry-shell-interactive/OTLP_METRICS_HEADER
+Type: string
+Default:
+Description: OTLP Metrics Authorization Header:
+ Define the API Token for the OTLP Metrics Endpoint, empty if none is required.
+
+Template: opentelemetry-shell-interactive/OTLP_LOGS_HEADER
+Type: string
+Default:
+Description: OTLP Logs Authorization Header:
+ Define the API Token for the OTLP Logs Endpoint, empty if none is required.

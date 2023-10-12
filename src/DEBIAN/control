@@ -1,0 +1,8 @@
+Package: opentelemetry-bash-interactive
+Version: 0.0.1
+Architecture: all
+Depends: opentelemetry-shell
+Priority: extra
+Maintainer: Philipp Lengauer <p.lengauer@gmail.com>
+Homepage: https://github.com/plengauer/opentelemetry-bash-rc
+Description: Generating open-telemetry traces from interactive shell scripts

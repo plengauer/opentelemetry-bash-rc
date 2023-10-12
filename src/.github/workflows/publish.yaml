@@ -1,0 +1,51 @@
+name: Publish
+
+on:
+  push:
+    branches: main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+    steps:
+      - uses: actions/checkout@v2
+      - run: sudo apt-get install devscripts debhelper
+      - run: dpkg-deb --root-owner-group --build . ../package.deb
+      - uses: actions/upload-artifact@v2
+        with:
+          name: package.deb
+          path: package.deb
+
+  publish:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo "::set-output name=version::$(cat ./src/DEBIAN/control | grep 'Version' | awk -F\  '{print $2}')"
+        id: version
+      - uses: actions/download-artifact@v2
+        with:
+          name: package.deb
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_RELEASE_TOKEN }}
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          release_name: Release v${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
+        continue-on-error: true
+      - uses: actions/upload-release-asset@v1
+        id: upload-release-asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_RELEASE_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./package.deb
+          asset_name: opentelemetry-shell-interactive_${{ steps.version.outputs.version }}.deb
+          asset_content_type: application/octet-stream
+        continue-on-error: true

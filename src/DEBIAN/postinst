@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+rm -rf /var/lib/opentelemetry_shell_interactive || true
+
+. /usr/share/debconf/confmodule
+db_get opentelemetry-shell-rc/OTEL_RESOURCE_ATTRIBUTES
+echo "OTEL_RESOURCE_ATTRIBUTES=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
+db_get opentelemetry-shell-rc/OTLP_TRACES_ENDPOINT
+echo "OTLP_TRACES_ENDPOINT=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
+db_get opentelemetry-shell-rc/OTLP_TRACES_HEADER
+echo "OTLP_TRACES_HEADER=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
+db_get opentelemetry-shell-rc/OTLP_METRICS_ENDPOINT
+echo "OTLP_METRICS_ENDPOINT=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
+db_get opentelemetry-shell-rc/OTLP_METRICS_HEADER
+echo "OTLP_METRICS_HEADER=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
+db_get opentelemetry-shell-rc/OTLP_LOGS_ENDPOINT
+echo "OTLP_LOGS_ENDPOINT=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
+db_get opentelemetry-shell-rc/OTLP_LOGS_HEADER
+echo "OTLP_LOGS_HEADER=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env

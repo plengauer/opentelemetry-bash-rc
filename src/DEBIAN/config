@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+. /usr/share/debconf/confmodule
+
+db_beginblock
+db_input high opentelemetry-shell-rc/OTEL_RESOURCE_ATTRIBUTES || true
+db_endblock
+
+db_beginblock
+db_input high opentelemetry-shell-interactive/OTLP_TRACES_ENDPOINT || true
+db_input high opentelemetry-shell-interactive/OTLP_TRACES_HEADER || true
+db_input high opentelemetry-shell-interactive/OTLP_METRICS_ENDPOINT || true
+db_endblock
+
+db_beginblock
+db_input high opentelemetry-shell-interactive/OTLP_METRICS_HEADER || true
+db_input high opentelemetry-shell-interactive/OTLP_LOGS_ENDPOINT || true
+db_input high opentelemetry-shell-interactive/OTLP_LOGS_HEADER || true
+db_endblock
+
+db_go
