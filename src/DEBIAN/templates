@@ -22,19 +22,19 @@ Default:
 Description: OTLP Endpoint:
  Define the OTLP Logs Endpoint to send metrics to, empty if no observability data should be collected.
 
-Template: opentelemetry-shell-interactive/OTLP_TRACES_HEADER
+Template: opentelemetry-shell-interactive/OTLP_TRACES_HEADERS
 Type: string
 Default:
 Description: OTLP Traces Authorization Header:
  Define the API Token for the OTLP Traces Endpoint, empty if none is required.
 
-Template: opentelemetry-shell-interactive/OTLP_METRICS_HEADER
+Template: opentelemetry-shell-interactive/OTLP_METRICS_HEADERS
 Type: string
 Default:
 Description: OTLP Metrics Authorization Header:
  Define the API Token for the OTLP Metrics Endpoint, empty if none is required.
 
-Template: opentelemetry-shell-interactive/OTLP_LOGS_HEADER
+Template: opentelemetry-shell-interactive/OTLP_LOGS_HEADERS
 Type: string
 Default:
 Description: OTLP Logs Authorization Header:
