@@ -2,7 +2,7 @@
 set -e
 
 rm -rf /var/lib/opentelemetry_shell_interactive || true
-
+mkdir -p /var/lib/opentelemetry_shell_interactive
 
 . /usr/share/debconf/confmodule
 db_get opentelemetry-shell-interactive/OTEL_RESOURCE_ATTRIBUTES
