@@ -8,19 +8,16 @@ mkdir -p /var/lib/opentelemetry_shell_interactive
 db_get opentelemetry-shell-interactive/OTEL_RESOURCE_ATTRIBUTES
 echo "export OTEL_RESOURCE_ATTRIBUTES=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
 
-echo export OTEL_SHELL_TRACES_ENABLE=TRUE >> /var/lib/opentelemetry_shell_interactive/env
 db_get opentelemetry-shell-interactive/OTLP_TRACES_ENDPOINT
 echo "export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
 db_get opentelemetry-shell-interactive/OTLP_TRACES_HEADERS
 echo "export OTEL_EXPORTER_OTLP_TRACES_HEADERS=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
 
-echo export OTEL_SHELL_METRICS_ENABLE=TRUE >> /var/lib/opentelemetry_shell_interactive/env
 db_get opentelemetry-shell-interactive/OTLP_METRICS_ENDPOINT
 echo "export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
 db_get opentelemetry-shell-interactive/OTLP_METRICS_HEADERS
 echo "export OTEL_EXPORTER_OTLP_METRICS_HEADERS=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
 
-echo export OTEL_SHELL_LOGS_ENABLE=TRUE >> /var/lib/opentelemetry_shell_interactive/env
 db_get opentelemetry-shell-interactive/OTLP_LOGS_ENDPOINT
 echo "export OTEL_EXPORTER_OTLP_LOGS_ENDPOINT=\"$RET\"" >> /var/lib/opentelemetry_shell_interactive/env
 db_get opentelemetry-shell-interactive/OTLP_LOGS_HEADERS
