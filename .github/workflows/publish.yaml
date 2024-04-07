@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: sudo apt-get install devscripts debhelper
       - run: dpkg-deb --root-owner-group --build . ../package.deb
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: package.deb
           path: package.deb
@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: echo "::set-output name=version::$(cat ./src/DEBIAN/control | grep 'Version' | awk -F\  '{print $2}')"
         id: version
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: package.deb
       - uses: actions/create-release@v1
