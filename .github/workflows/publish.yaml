@@ -11,6 +11,12 @@ jobs:
       run:
         working-directory: ./src
     steps:
+      - uses: plengauer/opentelemetry-bash/actions/instrument/job@v5.7.5
+        with:
+          secrets_to_redact: '${{ toJSON(secrets) }}'
+        env:
+          OTEL_EXPORTER_OTLP_ENDPOINT: '${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}'
+          OTEL_EXPORTER_OTLP_HEADERS: '${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}'
       - uses: actions/checkout@v4
       - run: sudo apt-get install devscripts debhelper
       - run: dpkg-deb --root-owner-group --build . ../package.deb
@@ -23,6 +29,12 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - uses: plengauer/opentelemetry-bash/actions/instrument/job@v5.7.5
+        with:
+          secrets_to_redact: '${{ toJSON(secrets) }}'
+        env:
+          OTEL_EXPORTER_OTLP_ENDPOINT: '${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}'
+          OTEL_EXPORTER_OTLP_HEADERS: '${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}'
       - uses: actions/checkout@v4
       - run: echo "::set-output name=version::$(cat ./src/DEBIAN/control | grep 'Version' | awk -F\  '{print $2}')"
         id: version
