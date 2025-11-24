@@ -1,5 +1,5 @@
 Package: opentelemetry-bash-interactive
-Version: 0.1.0
+Version: 0.2.0
 Architecture: all
 Depends: opentelemetry-shell (>= 3.16.0)
 Priority: extra
