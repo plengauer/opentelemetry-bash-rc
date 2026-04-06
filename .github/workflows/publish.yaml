@@ -11,16 +11,16 @@ jobs:
       run:
         working-directory: ./src
     steps:
-      - uses: plengauer/opentelemetry-github/actions/instrument/job@v5.50.0
+      - uses: plengauer/opentelemetry-github/actions/instrument/job@215271fe54efbdffbece78b02493f7ecd73678f8 # v5.50.0
         with:
           secrets_to_redact: '["${{ github.token }}"]'
         env:
           OTEL_EXPORTER_OTLP_ENDPOINT: '${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}'
           OTEL_EXPORTER_OTLP_HEADERS: '${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}'
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - run: sudo apt-get install devscripts debhelper
       - run: dpkg-deb --root-owner-group --build . ../package.deb
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
         with:
           name: package.deb
           path: package.deb
@@ -30,19 +30,19 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: plengauer/opentelemetry-github/actions/instrument/job@v5.50.0
+      - uses: plengauer/opentelemetry-github/actions/instrument/job@215271fe54efbdffbece78b02493f7ecd73678f8 # v5.50.0
         with:
           secrets_to_redact: '["${{ github.token }}"]'
         env:
           OTEL_EXPORTER_OTLP_ENDPOINT: '${{ secrets.OTEL_EXPORTER_OTLP_ENDPOINT }}'
           OTEL_EXPORTER_OTLP_HEADERS: '${{ secrets.OTEL_EXPORTER_OTLP_HEADERS }}'
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - run: echo "::set-output name=version::$(cat ./src/DEBIAN/control | grep 'Version' | awk -F\  '{print $2}')"
         id: version
-      - uses: actions/download-artifact@v8
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
         with:
           name: package.deb
-      - uses: actions/create-release@v1
+      - uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
         id: create_release
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -52,7 +52,7 @@ jobs:
           draft: false
           prerelease: false
         continue-on-error: true
-      - uses: actions/upload-release-asset@v1
+      - uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
         id: upload-release-asset
         env:
           GITHUB_TOKEN: ${{ github.token }}
